@@ -1,0 +1,62 @@
+<?php
+
+    $data = new VolsController();
+    $vols = $data->getAllVols();
+    // print_r($vols);
+?>
+
+<div class ="container">
+    <div class="row my-4">
+        <div class="col-md-10 mx-auto">
+            <div class="card">
+                <div class="card-body bg-light table-responsive">
+                <a href="<?php echo BASE_URL;?>add" class="btn btn-sm btn-primary mr-2 mb-2">
+                <i class="fas fa-plus"></i>
+                </a>
+                
+                <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">Origin</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Dep_time</th>
+                            <th scope="col">Return_time</th>
+                            <th scope="col">Seats</th>
+                            <th scope="col">Flighttype</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($vols as $vol):?>
+                                <tr>
+                                    <th scope="row"><?php echo $vol['origin']; ?></th>
+                                    <td><?php echo $vol['destination']; ?></td>
+                                    <td><?php echo $vol['dep_time']; ?></td>
+                                    <td><?php echo $vol['return_time']; ?></td>
+                                    <td><?php echo $vol['seats']; ?></td>
+                                    <td><?php echo $vol['flighttype']
+                                        ?
+                                        '<span class="badge badge-success">One way</span>'
+                                        :
+                                        '<span class="badge badge-danger">Roud trip</span>';
+                                    ; ?></td>
+                                    <td class="d-flex flex-row">
+                                        <form method="post" class="mr-1" action="update">
+                                            <input type="hidden" name="id" value="<?php echo $vol['id'];?>">
+                                            <button class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
+                                        </form>
+                                        <form method="post" class="mr-1" action="delete">
+                                            <input type="hidden" name="id" value="<?php echo $vol['id'];?>">
+                                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+
+                                                                                
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
