@@ -6,15 +6,15 @@
 ?>
 
 <div class ="container">
-    <div class="row my-4">
-        <div class="col-md-10 mx-auto">
-            <div class="card">
-                <div class="card-body bg-light table-responsive">
+    <div class="row my-5">
+        <div class="col-md-15 mx-auto">
+            <!-- <div class="card "> -->
+                <!-- <div class="card-body bg-light "> -->
                 <a href="<?php echo BASE_URL;?>add" class="btn btn-sm btn-primary mr-2 mb-2">
                 <i class="fas fa-plus"></i>
                 </a>
                 
-                <table class="table table-hover">
+                <table class="table table-striped table-dark table-responsive">
                         <thead>
                             <tr>
                             <th scope="col">Origin</th>
@@ -37,7 +37,7 @@
                                         ?
                                         '<span class="badge badge-success">One way</span>'
                                         :
-                                        '<span class="badge badge-danger">Roud trip</span>';
+                                        '<span class="badge badge-info">Round trip</span>';
                                     ; ?></td>
                                     <td class="d-flex flex-row">
                                         <form method="post" class="mr-1" action="update">
