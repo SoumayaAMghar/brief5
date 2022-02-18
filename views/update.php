@@ -2,6 +2,8 @@
     if(isset($_POST['id'])){
         $existVol= new VolsController();
         $vol= $existVol->getOneVol();
+    }else{
+        Redirect::to('home');
     }
     if(isset($_POST['submit'])){
         $existVol= new VolsController();

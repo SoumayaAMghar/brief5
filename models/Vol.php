@@ -57,24 +57,18 @@ class Vol{
         $stmt->close();
         $stmt = null;
     }
+    static public function delete($data){
+        $id = $data['id'];
+        try{
+            $query = 'DELETE FROM vols WHERE id=:id';
+            $stmt = DB::connect()->prepare($query);
+            $stmt->execute(array(":id" => $id));
+            if($stmt->execute()){
+                return 'ok';
+            }
+        }catch(PDOException $ex){
+            echo 'error'.$ex->getMessage();
+        }
+    }
 }
 
-
-
-
-// static public function add($data){
-//     $stmt = DB::connect()->prepare('INSERT INTO vols (origin,destination,dep_time,return_time,seats,flighttype) VALUES (:origin,:destination,:dep_time,:return_time,:seats,:flighttype)');
-//     $stmt->bindParam(':origin',$data['origin']);
-//     $stmt->bindParam(':destination',$data['destination']);
-//     $stmt->bindParam(':dep_time',$data['dep_time']);
-//     $stmt->bindParam(':return_time',$data['return_time']);
-//     $stmt->bindParam(':seats',$data['seats']);
-//     $stmt->bindParam(':flighttype',$data['flighttype']);
-    
-//     if($stmt->execute()){
-//         return 'ok';
-//     }else{
-//         return 'error';
-//     }
-//     $stmt->close();
-//     $stmt = null;

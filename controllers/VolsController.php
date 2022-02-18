@@ -25,7 +25,8 @@ class VolsController{
             );
             $result = Vol::add($data);
             if($result === 'ok'){
-                header('location:'.BASE_URL);
+                Session::set('success','Vol Ajouté');
+                Redirect::to('home');
             }else{
                 echo $result;
             }
@@ -44,7 +45,20 @@ class VolsController{
             );
             $result = Vol::update($data);
             if($result === 'ok'){
-                header('location:'.BASE_URL);
+                Session::set('success','Vol Modifié');
+                Redirect::to('home');
+            }else{
+                echo $result;
+            }
+        }
+    }
+    public function deleteVol(){
+        if(isset($_POST['id'])){
+            $data['id'] = $_POST['id'];
+            $result = Vol::delete($data);
+            if($result === 'ok'){
+                Session::set('success','Vol Supprimé');
+                Redirect::to('home');
             }else{
                 echo $result;
             }

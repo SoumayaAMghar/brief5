@@ -8,6 +8,7 @@
 <div class ="container">
     <div class="row my-5">
         <div class="col-md-15 mx-auto">
+            <?php include('./views/includes/alerts.php');?>
             <!-- <div class="card "> -->
                 <!-- <div class="card-body bg-light "> -->
                 <a href="<?php echo BASE_URL;?>add" class="btn btn-sm btn-primary mr-2 mb-2">
