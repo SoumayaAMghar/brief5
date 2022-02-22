@@ -13,6 +13,14 @@ class VolsController{
             return $vol;
         }
     }
+    public function findVols(){
+        if(isset($_POST['search'])){
+            $data = array('search' => $_POST['search']);
+            
+        }
+        $vols = Vol::searchVol($data);
+        return $vols;
+    }
     public function addVol(){
         if(isset($_POST['submit'])){
             $data = array(

@@ -70,5 +70,17 @@ class Vol{
             echo 'error'.$ex->getMessage();
         }
     }
+    static public function searchVol($data){
+        $search = $data['search'];
+        try{
+            $query = 'SELECT * FROM vols WHERE origin LIKE ? OR destination LIKE ?';
+            $stmt = DB::connect()->prepare($query);
+            $stmt->execute(array('%'.$search.'%','%'.$search.'%'));
+            $vols =$stmt->fetchAll();
+            return $vols;
+        }catch(PDOException $ex){
+            echo 'error'.$ex->getMessage();
+        }
+    }
 }
 

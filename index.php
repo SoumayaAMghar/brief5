@@ -1,24 +1,30 @@
 <?php
 require_once './views/includes/header.php';
 require_once './autoload.php';
-require_once'./controllers/HomeController.php';
+require_once './controllers/HomeController.php';
 
 $home = new HomeController();
 
-$pages = ['home','add','update','delete'];
+$pages = ['home','add','update','delete','login','register'];
 
-if(isset($_GET['page'])){
-    if(in_array($_GET['page'],$pages)){
-        $page = $_GET['page'];
-        $home->index($page);
+if(isset($_SESSION['login']) && $_SESSION['login'] === true){
+
+
+    if(isset($_GET['page'])){
+        if(in_array($_GET['page'],$pages)){
+            $page = $_GET['page'];
+            $home->index($page);
+        }else{
+            include('views/includes/404.php');
+        }
     }else{
-        include('views/includes/404.php');
+        $home->index('home');
     }
-}else{
-    $home->index('home');
-}
-?>
-
-<?php
-require_once './views/includes/footer.php';
-?>
+    require_once './views/includes/footer.php';
+    }else if(isset($_GET['page']) && $_GET['page'] === 'register'){
+        $home->index('register');
+    }else{
+        $home->index('login');
+    }
+        
+    

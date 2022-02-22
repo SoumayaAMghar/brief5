@@ -1,7 +1,11 @@
 <?php
-
+if (isset($_POST['find'])){
+    $data = new VolsController();
+    $vols = $data->findols();
+}else{
     $data = new VolsController();
     $vols = $data->getAllVols();
+}
     // print_r($vols);
 ?>
 
@@ -10,11 +14,17 @@
         <div class="col-md-15 mx-auto">
             <?php include('./views/includes/alerts.php');?>
             <!-- <div class="card "> -->
-                <!-- <div class="card-body bg-light "> -->
+                <div class="card-body bg-dark ">
                 <a href="<?php echo BASE_URL;?>add" class="btn btn-sm btn-primary mr-2 mb-2">
                 <i class="fas fa-plus"></i>
                 </a>
-                
+                <a href="<?php echo BASE_URL;?>" class="btn btn-sm btn-secondary mr-2 mb-2">
+                <i class="fas fa-home"></i>
+                </a>
+                <form method="post" class="float-right mb-2 d-flex flex-row">
+                    <input class="form-control" type="text" name="search" placeholder="Recherche">
+                    <button class="btn btn-info btn-sm" name="find" type="submit"><i class="fa fa-search"></i></button>
+                </form>
                 <table class="table table-striped table-dark table-responsive">
                         <thead>
                             <tr>
