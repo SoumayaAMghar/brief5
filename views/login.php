@@ -1,12 +1,8 @@
 <?php
-if (isset($_POST['find'])){
-    $data = new VolsController();
-    $vols = $data->findols();
-}else{
-    $data = new VolsController();
-    $vols = $data->getAllVols();
-}
-    // print_r($vols);
+if (isset($_POST['submit'])){
+    $loginUser = new UsersController();
+    $loginUser->auth();
+} // print_r($vols);
 ?>
 
 <div class ="container">
@@ -18,14 +14,14 @@ if (isset($_POST['find'])){
                     <h3 class="text-center">Inscription</h3>
                 </div>
                 <div class="card-body bg-dark ">
-                    <form method="post" class="mr-1" action="delete">   
+                    <form method="post" class="mr-1">   
                         <div class="form-group">
-                            <input type="text" name="username" placeholder="Pseudo" class="form-group">
+                            <input type="text" name="username" placeholder="Pseudo" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" placeholder="Mot de passe" class="form-group">
+                            <input type="password" name="password" placeholder="Mot de passe" class="form-control">
                         </div>
-                        <button class="btn btn-sm btn-primary">Connexion</i></button>
+                        <button name="submit" class="btn btn-sm btn-primary">Connexion</i></button>
                     </form>
                     <div class="card-footer">
                         <a href="<?php echo BASE_URL?>register" class="btn btn-link">Inscription</a>

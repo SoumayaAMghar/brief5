@@ -1,6 +1,22 @@
 <?php
 
 class UsersController {
+    public function auth(){
+        if(isset($_POST['submit'])){
+            $data['username'] = $_POST['username'];
+            // die(print_r($data));
+            $result = User::login($data);
+            if($result->username === $_POST['username'] && password_verify($_POST['password'], $result->password))
+            {
+                $_SESSION['login'] = true;
+                $_SESSION['username'] = $result->username;
+                Redirect::to('home');
+            }else{
+                Session::set('error','Pseudo ou mode de pass est incorrect');
+                Redirect::to('login');
+            }
+        }
+    }
     public function register(){
         if(isset($_POST['submit'])){
             $options = [
@@ -20,5 +36,8 @@ class UsersController {
                 echo $result;
             }
         }
+    }
+    static public function logout(){
+        session_destroy();
     }
 }

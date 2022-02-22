@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['find'])){
     $data = new VolsController();
-    $vols = $data->findols();
+    $vols = $data->findVols();
 }else{
     $data = new VolsController();
     $vols = $data->getAllVols();
@@ -20,6 +20,9 @@ if (isset($_POST['find'])){
                 </a>
                 <a href="<?php echo BASE_URL;?>" class="btn btn-sm btn-secondary mr-2 mb-2">
                 <i class="fas fa-home"></i>
+                </a>
+                <a href="<?php echo BASE_URL;?>logout" title= "Déconnexion" class="btn btn-sm btn-secondary bg-info mr-2 mb-2">
+                <i class="fas fa-user mr-2">  <?php echo $_SESSION['username'];?></i>
                 </a>
                 <form method="post" class="float-right mb-2 d-flex flex-row">
                     <input class="form-control" type="text" name="search" placeholder="Recherche">

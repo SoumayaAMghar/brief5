@@ -1,10 +1,7 @@
 <?php
-if (isset($_POST['find'])){
-    $data = new VolsController();
-    $vols = $data->findols();
-}else{
-    $data = new VolsController();
-    $vols = $data->getAllVols();
+if (isset($_POST['submit'])){
+    $creatUser = new UsersController();
+    $creatUser->register();
 }
     // print_r($vols);
 ?>
@@ -18,15 +15,15 @@ if (isset($_POST['find'])){
                     <h3 class="text-center">Inscription</h3>
                 </div>
                 <div class="card-body bg-dark ">
-                    <form method="post" class="mr-1" action="delete">
+                    <form method="post" class="mr-1">
                         <div class="form-group">
-                            <input type="text" name="fullname" placeholder="FullName" class="form-group">
+                            <input type="text" name="fullname" placeholder="FullName" class="form-control">
                         </div>    
                         <div class="form-group">
-                            <input type="text" name="username" placeholder="Pseudo" class="form-group">
+                            <input type="text" name="username" placeholder="Pseudo" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" placeholder="Mot de passe" class="form-group">
+                            <input type="password" name="password" placeholder="Mot de passe" class="form-control">
                         </div>
                         <button name="submit" class="btn btn-sm btn-primary">Inscription</button>
                     </form>
