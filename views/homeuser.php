@@ -48,7 +48,7 @@ if (isset($_POST['find'])){
                             <th scope="col">Return_time</th>
                             <th scope="col">Seats</th>
                             <th scope="col">Flighttype</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,7 +67,7 @@ if (isset($_POST['find'])){
                                         '<span class="badge badge-info">Round trip</span>';
                                     ; ?></td>
                                     <td class="d-flex flex-row">
-                                        <form method="POST"  action="" class="mr-3">
+                                    <form method="POST"  action="" class="mr-3">
                                         <input type="text" hidden name="id" value="<?php echo $vol['id']; ?>">
                                         <input type="text" hidden name="origin" value="<?php echo $vol['origin']; ?>">
                                         <input type="text" hidden name="destination" value="<?php echo $vol['destination']; ?>">

@@ -77,36 +77,52 @@ class VolsController{
         }
     }
     public function deleteRev(){
-        if(isset($_POST['id'])){
-            $data['id'] = $_POST['id'];
+        if(isset($_POST['iddelete'])){
+            $data['id'] = $_POST['iddelete'];
             $result = Vol::deleteRev($data);
             if($result === 'ok'){
                 Session::set('success', 'Reservation Deleted');
-                    Redirect::to('delete');
+                    Redirect::to('showvols');
             }else{
                echo $result ;
             }
-        }
-    }
-    public function reserveFlight(){
-        if(isset($_POST['reserve'])){
-            $data = array(
-                'id_user' => $_SESSION['id'],
-                'id_vol' => $_POST['id'],
-                'destination' => $_POST['destination'],
-                'origin' => $_POST['origin'],
-                'dep_time' => $_POST['dep_time'],
-                'flighttype' => $_POST['flighttype'],
-            );
-
-            $result = Vol::reserve($data);
-            if($result === 'ok'){
-                    Session::set('success', 'Flight reserved');
-                    Redirect::to('homeuser');
-            }else{
-               echo $result ;
-            }
-        }
     }
 
+}
+public function reserveFlight(){
+    if(isset($_POST['reserve'])){
+        $data = array(
+            'id_user' => $_SESSION['id'],
+            'id_vol' => $_POST['id'],
+            'destination' => $_POST['destination'],
+            'origin' => $_POST['origin'],
+            'dep_time' => $_POST['dep_time'],
+            'flighttype' => $_POST['flighttype'],
+        );
+
+        $result = Vol::reserve($data);
+        if($result === 'ok'){
+                Session::set('success', 'Flight reserved');
+                Redirect::to('homeuser');
+        }else{
+           echo $result ;
+        }
+    }
+}
+public function addPassenger(){
+    if(isset($_POST['addpass'])){
+        $data = array(
+            'user_id' => $_SESSION['id'],
+            'reservation_id' => $_POST['res_id'],
+            'fullname' => $_POST['passfullname'],
+        );
+        $result = Vol::addpass($data);
+        if($result === 'ok'){
+            Session::set('success', 'Passenger added');
+            Redirect::to('homeuser');
+        }else{
+           echo $result ;
+        }
+    }
+}
 }

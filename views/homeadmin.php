@@ -32,8 +32,8 @@ if (isset($_POST['find'])){
                 <a href="<?php echo BASE_URL;?>logout" title= "Déconnexion" class="btn btn-sm btn-secondary bg-info mr-2 mb-2">
                 <i class="fas fa-user mr-2">  <?php echo $_SESSION['username'];?></i>
                 </a>
-                <a href="<?php echo BASE_URL?>showvols" class="btn btn-warning btn-sm mb-2 mr-2 "> <!--url de base plus la page add -->
-                <i class="fas fa-business-time"></i>
+                <a href="<?php echo BASE_URL?>allres" class="btn btn-warning btn-sm mb-2 mr-2 "> <!--url de base plus la page add -->
+                <i class="fas fa-plane">All Reservations</i>
                 </a>
                 <form method="post" class="float-right mb-2 d-flex flex-row">
                     <input class="form-control" type="text" name="search" placeholder="Recherche">
@@ -48,7 +48,7 @@ if (isset($_POST['find'])){
                             <th scope="col">Return_time</th>
                             <th scope="col">Seats</th>
                             <th scope="col">Flighttype</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

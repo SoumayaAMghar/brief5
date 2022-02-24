@@ -1,5 +1,5 @@
 <?php 
-	if(isset($_POST['id'])){
+	if(isset($_POST['iddelete'])){
 		$deleteRev = new VolsController();
 		$deleteRev->deleteRev();
         Redirect::to("showvols");

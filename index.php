@@ -10,7 +10,7 @@ require_once './views/includes/alerts.php';
 
 $homeuser = new HomeController();
 
-$pages = ['homeadmin','homeuser','add','update','delete','login','register','logout','showvols','deleterev'];
+$pages = ['homeadmin','homeuser','add','update','delete','login','register','logout','showvols','deleterev','allres','addpassenger'];
 
 if(isset($_SESSION['login']) && $_SESSION['login'] === true){
     if(isset($_GET['page'])){

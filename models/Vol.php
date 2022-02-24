@@ -19,7 +19,7 @@ class Vol{
                 booking.dep_time,
                 users.fullname,
                 booking.id_vol,
-                booking.flighttype
+                booking.flight_type
             FROM
                 booking
             INNER JOIN users ON booking.id_user = users.id;');
@@ -59,7 +59,7 @@ class Vol{
         }else{
             return 'error';
         }
-        $stmt->close();
+        // $stmt->close();
         $stmt = null;
     }
     static public function update($data){
@@ -129,16 +129,17 @@ class Vol{
         $stmt->bindParam(':origin', $data['origin']);
         $stmt->bindParam(':destination', $data['destination']);
         $stmt->bindParam(':dep_time', $data['dep_time']);
+        $stmt->bindParam(':flight_type', $data['flighttype']);
         $stmt->execute();
 
-        if ($data['flighttype'] === 'Round trip') {
-            $stmt = DB::connect()->prepare('INSERT INTO booking (id_user, id_vol, flight_type, origin, destination, dep_time) VALUES (:id_user,:id_vol,:flight_type,:origin,:destination,:dep_time)');
-            $stmt->bindParam(':id_user', $data['id_user']);
-            $stmt->bindParam(':id_vol', $data['id_vol']);
-            $stmt->bindParam(':flight_type', $data['flighttype']);
-            $stmt->bindParam(':origin', $data['destination']);
-            $stmt->bindParam(':destination', $data['origin']);
-            $stmt->bindParam(':dep_time', $data['dep_time']);
+    }
+    static public function addpass($data)
+    {
+        for ($i = 0; $i < count($data['fullname']); $i++) {
+            $stmt = DB::connect()->prepare('INSERT INTO passenger (user_id, reservation_id, fullname) VALUES (:user_id,:reservation_id,:fullname)');
+            $stmt->bindParam(':user_id', $data['user_id']);
+            $stmt->bindParam(':reservation_id', $data['reservation_id']);
+            $stmt->bindParam(':fullname', $data['fullname'][$i]);
             $stmt->execute();
         }
     }
