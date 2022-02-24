@@ -18,18 +18,18 @@ class User{
         }
     }
     static public function createUser($data){
+        try{
         $stmt = DB::connect()->prepare('INSERT INTO users (fullname,username,password) VALUES (:fullname,:username,:password)');
         $stmt->bindParam(':fullname',$data['fullname']);
         $stmt->bindParam(':username',$data['username']);
         $stmt->bindParam(':password',$data['password']);
-
-
         if($stmt->execute()){
             return 'ok';
-        }else{
-            return 'error';
         }
-        $stmt->close();
+        }catch(PDOException $ex){
+            return '<div style="background-color : #ff3851;"><h4 style="color:red;">Username Already Exist Choose an other One </h4></div>';
+        }
+
         $stmt = null;
     }
 }

@@ -5,10 +5,33 @@ class Vol{
         $stmt = DB::connect()->prepare('SELECT * FROM vols');
         $stmt->execute();
         return $stmt->fetchAll();
-        $stmt->close();
+        // $stmt->close();
         $stmt = null;
     }
 
+    static public function getAllres($id_user)
+    {
+        if ($_SESSION['role'] == 1) {
+            $stmt = DB::connect()->prepare('SELECT
+                booking.id,
+                booking.origin,
+                booking.destination,
+                booking.dep_time,
+                users.fullname,
+                booking.id_vol,
+                booking.flighttype
+            FROM
+                booking
+            INNER JOIN users ON booking.id_user = users.id;');
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } else {
+            $stmt = DB::connect()->prepare('SELECT * FROM booking WHERE id_user=:id_user');
+            $stmt->bindParam(':id_user', $id_user);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
     static public function getVol($data){
         $id = $data['id'];
         try{
@@ -54,7 +77,7 @@ class Vol{
         }else{
             return 'error';
         }
-        $stmt->close();
+        // $stmt->close();
         $stmt = null;
     }
     static public function delete($data){
@@ -80,6 +103,43 @@ class Vol{
             return $vols;
         }catch(PDOException $ex){
             echo 'error'.$ex->getMessage();
+        }
+    }
+    static public function deleteRev($data)
+    {
+        $id = $data['id'];
+        try {
+            $query = 'DELETE FROM booking WHERE id=:id';
+            $stmt = DB::connect()->prepare($query);
+            $stmt->execute(array(":id" => $id));
+            if ($stmt->execute()) {
+                return 'ok';
+            }
+        } catch (PDOException $ex) {
+            echo 'error' . $ex->getMessage();
+        }
+    }
+    static public function reserve($data)
+    {
+        $stmt = DB::connect()->prepare('SELECT * FROM vols WHERE id=:id');
+        $stmt = DB::connect()->prepare('INSERT INTO booking (id_user, id_vol, flight_type, origin, destination, dep_time) VALUES (:id_user,:id_vol,:flight_type,:origin,:destination,:dep_time)');
+        $stmt->bindParam(':id_user', $data['id_user']);
+        $stmt->bindParam(':id_vol', $data['id_vol']);
+        $stmt->bindParam(':flight_type', $data['flighttype']);
+        $stmt->bindParam(':origin', $data['origin']);
+        $stmt->bindParam(':destination', $data['destination']);
+        $stmt->bindParam(':dep_time', $data['dep_time']);
+        $stmt->execute();
+
+        if ($data['flighttype'] === 'Round trip') {
+            $stmt = DB::connect()->prepare('INSERT INTO booking (id_user, id_vol, flight_type, origin, destination, dep_time) VALUES (:id_user,:id_vol,:flight_type,:origin,:destination,:dep_time)');
+            $stmt->bindParam(':id_user', $data['id_user']);
+            $stmt->bindParam(':id_vol', $data['id_vol']);
+            $stmt->bindParam(':flight_type', $data['flighttype']);
+            $stmt->bindParam(':origin', $data['destination']);
+            $stmt->bindParam(':destination', $data['origin']);
+            $stmt->bindParam(':dep_time', $data['dep_time']);
+            $stmt->execute();
         }
     }
 }

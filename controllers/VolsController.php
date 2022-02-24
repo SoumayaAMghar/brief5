@@ -6,6 +6,10 @@ class VolsController{
         return $vols;
     }
 
+    public function getAllreservations(){
+        $vols = Vol::getAllres($_SESSION['id']);
+        return $vols;
+    }
     public function getOneVol(){
         if(isset($_POST['id'])){
             $data = array('id' => $_POST['id']);
@@ -34,7 +38,7 @@ class VolsController{
             $result = Vol::add($data);
             if($result === 'ok'){
                 Session::set('success','Vol Ajouté');
-                Redirect::to('home');
+                Redirect::to('homeadmin');
             }else{
                 echo $result;
             }
@@ -54,7 +58,7 @@ class VolsController{
             $result = Vol::update($data);
             if($result === 'ok'){
                 Session::set('success','Vol Modifié');
-                Redirect::to('home');
+                Redirect::to('homeadmin');
             }else{
                 echo $result;
             }
@@ -66,10 +70,43 @@ class VolsController{
             $result = Vol::delete($data);
             if($result === 'ok'){
                 Session::set('success','Vol Supprimé');
-                Redirect::to('home');
+                Redirect::to('homeadmin');
             }else{
                 echo $result;
             }
         }
     }
+    public function deleteRev(){
+        if(isset($_POST['id'])){
+            $data['id'] = $_POST['id'];
+            $result = Vol::deleteRev($data);
+            if($result === 'ok'){
+                Session::set('success', 'Reservation Deleted');
+                    Redirect::to('delete');
+            }else{
+               echo $result ;
+            }
+        }
+    }
+    public function reserveFlight(){
+        if(isset($_POST['reserve'])){
+            $data = array(
+                'id_user' => $_SESSION['id'],
+                'id_vol' => $_POST['id'],
+                'destination' => $_POST['destination'],
+                'origin' => $_POST['origin'],
+                'dep_time' => $_POST['dep_time'],
+                'flighttype' => $_POST['flighttype'],
+            );
+
+            $result = Vol::reserve($data);
+            if($result === 'ok'){
+                    Session::set('success', 'Flight reserved');
+                    Redirect::to('homeuser');
+            }else{
+               echo $result ;
+            }
+        }
+    }
+
 }

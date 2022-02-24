@@ -4,14 +4,19 @@ class UsersController {
     public function auth(){
         if(isset($_POST['submit'])){
             $data['username'] = $_POST['username'];
-            // die(print_r($data));
             $result = User::login($data);
             if($result->username === $_POST['username'] && password_verify($_POST['password'], $result->password))
             {
                 $_SESSION['login'] = true;
                 $_SESSION['username'] = $result->username;
-                Redirect::to('home');
-            }else{
+                $_SESSION['role'] = $result->role;
+                $_SESSION['id'] = $result->id;
+                    if($result->role == 0 ){
+                        Redirect::to('homeuser');
+                    }else{
+                        Redirect::to('homeadmin');
+                    }
+                }else{
                 Session::set('error','Pseudo ou mode de pass est incorrect');
                 Redirect::to('login');
             }
@@ -27,6 +32,7 @@ class UsersController {
                 'fullname' => $_POST['fullname'],
                 'username' => $_POST['username'],
                 'password' => $password,
+                'role' => 0
             );
             $result = User::createUser($data);
             if($result === 'ok'){

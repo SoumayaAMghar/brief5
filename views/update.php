@@ -3,7 +3,7 @@
         $existVol= new VolsController();
         $vol= $existVol->getOneVol();
     }else{
-        Redirect::to('home');
+        Redirect::to('homeAdmin');
     }
     if(isset($_POST['submit'])){
         $existVol= new VolsController();
