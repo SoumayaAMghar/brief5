@@ -1,8 +1,12 @@
 <?php
+if (!$_SESSION['role'] == 1) 
+Redirect::to('homeuser');
     if(isset($_POST['submit'])){
         $newVol= new VolsController();
         $newVol->addVol();
     }
+
+    
     
 
 ?>

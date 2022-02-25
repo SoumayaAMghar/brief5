@@ -1,9 +1,12 @@
 <?php
+    if (!$_SESSION['role'] == 1) 
+    Redirect::to('homeuser');
+
     if(isset($_POST['id'])){
         $existVol= new VolsController();
         $vol= $existVol->getOneVol();
     }else{
-        Redirect::to('homeAdmin');
+        Redirect::to('homeadmin');
     }
     if(isset($_POST['submit'])){
         $existVol= new VolsController();
