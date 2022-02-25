@@ -26,15 +26,19 @@
                 
                             <div class="form-group">
                                 <label class="text-white" for="fname">Please enter your passenger's Full name</label>
-                                <form method="post" id="pass_form">
-                                    <input type="text" hidden value="<?php echo $_SESSION['id'] ?>" name="user_id">
-                                    <input type="text" hidden value="<?php echo $_POST['id'] ?>" name="res_id">
+                                <form method="post">
+                                    <input type="text" hidden name="user_id">
+                                    <input type="text" hidden  name="reservation_id">
+                                    <!-- <label for="fullname">Fullname</label> -->
+                                    <input type="text"  name="fullname" placeholder="fullname">
+                                    <!-- <label for="birthday">Birthday</label> -->
+                                    <input type="datetime-local" name="birthday" >
+                                    <button type="submit" class="btn btn-primary mt-3" name="addpass">Add passenger to flight</button>
                                 </form>
+
                             </div>
-                        <div class="form-group">
-                           <button form="pass_form" type="submit" class="btn btn-primary mt-3" name="addpass">Add passenger to flight</button>
-                          <button type="submit" class="btn btn-primary mt-3" id="pluspass" name="add1pass"><i class="fa fa-plus"></i></button>
-                        </div>
+
+
                     </div>
                 </div>
             </div>

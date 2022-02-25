@@ -7,6 +7,9 @@ if (isset($_POST['find'])){
     $data = new VolsController();
     $vols = $data->getAllVols();
 }
+
+
+
     if(isset($_POST['reserve'])){
         $data = new VolsController();
         $flights = $data->reserveFlight();

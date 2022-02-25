@@ -113,15 +113,16 @@ public function addPassenger(){
     if(isset($_POST['addpass'])){
         $data = array(
             'user_id' => $_SESSION['id'],
-            'reservation_id' => $_POST['res_id'],
-            'fullname' => $_POST['passfullname'],
+            'reservation_id' => $_POST['reservation_id'],
+            'fullname' => $_POST['fullname'],
+            'birthday' => $_POST['birthday'],
         );
         $result = Vol::addpass($data);
         if($result === 'ok'){
             Session::set('success', 'Passenger added');
-            Redirect::to('homeuser');
+            Redirect::to('showvols');
         }else{
-           echo $result ;
+           echo $result;
         }
     }
 }

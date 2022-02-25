@@ -122,6 +122,7 @@ class Vol{
     static public function reserve($data)
     {
         $stmt = DB::connect()->prepare('SELECT * FROM vols WHERE id=:id');
+        // $stmt= DB::connect()->prepare('SELECT COUNT (*) FROM booking WHERE id=:id');  
         $stmt = DB::connect()->prepare('INSERT INTO booking (id_user, id_vol, flight_type, origin, destination, dep_time) VALUES (:id_user,:id_vol,:flight_type,:origin,:destination,:dep_time)');
         $stmt->bindParam(':id_user', $data['id_user']);
         $stmt->bindParam(':id_vol', $data['id_vol']);
@@ -129,19 +130,22 @@ class Vol{
         $stmt->bindParam(':origin', $data['origin']);
         $stmt->bindParam(':destination', $data['destination']);
         $stmt->bindParam(':dep_time', $data['dep_time']);
-        $stmt->bindParam(':flight_type', $data['flighttype']);
-        $stmt->execute();
+        if($stmt->execute()){
+            return 'ok';
+        }
 
     }
     static public function addpass($data)
-    {
-        for ($i = 0; $i < count($data['fullname']); $i++) {
-            $stmt = DB::connect()->prepare('INSERT INTO passenger (user_id, reservation_id, fullname) VALUES (:user_id,:reservation_id,:fullname)');
-            $stmt->bindParam(':user_id', $data['user_id']);
-            $stmt->bindParam(':reservation_id', $data['reservation_id']);
-            $stmt->bindParam(':fullname', $data['fullname'][$i]);
-            $stmt->execute();
+    { 
+        $stmt = DB::connect()->prepare('INSERT INTO passenger (user_id, reservation_id, fullname,birthday) VALUES (:user_id,:reservation_id,:fullname,:birthday)');
+        $stmt->bindParam(':user_id', $data['user_id']);
+        $stmt->bindParam(':reservation_id', $data['reservation_id']);
+        $stmt->bindParam(':fullname', $data['fullname']);
+        $stmt->bindParam(':birthday', $data['birthday']);
+        if($stmt->execute()){
+            return 'ok';
         }
+    
     }
 }
 

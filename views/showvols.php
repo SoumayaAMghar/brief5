@@ -45,26 +45,23 @@ if($_SESSION['role'] == 1){
                                     <th scope="row"><?php echo $vol['origin']; ?></th>
                                     <td><?php echo $vol['destination']; ?></td>
                                     <td><?php echo $vol['dep_time']; ?></td>
-                                    <td><?php echo $vol['flight_type'] == "One Way"
+                                    <td><?php echo $vol['flight_type'] 
                                         ?
                                         '<span class="badge badge-warning">One way</span>'
                                         :
                                         '<span class="badge badge-info">Round trip</span>';
                                     ; ?></td>
                                     <td class="d-flex flex-row">
-                                        <form method="post" class="mr-2" action="addpassenger">
-                                        <input type="hidden" name="id" value="<?php echo $vol['id']; ?>">
-                                        <button class="btn btn btn-success"><i class="fa fa-users"></i> <i class="fa fa-plus"></i></button>
-                                        </form>
-
-                                        <form method="POST"  action="deleterev" class="mr-2">
-                                        <input type="hidden" name="iddelete" value="<?php echo $vol['id'];?>">
-                                        <button class="btn btn btn-danger"><i class="fa fa-trash la la-trash"></i></button>
-                                        </form>
-                                        
-
-
-                                                                                
+                                    <form method="post" class="mr-2" action="addpassenger">
+                                    <input type="hidden" name="id" value="<?php echo $vol['id']; ?>">
+                                    <button class="btn btn btn-success"><i class="fa fa-users"></i> <i class="fa fa-plus"></i></button>
+                                    </form>
+                                    
+                                    <form method="POST"  action="deleterev" class="mr-2">
+                                    <input type="hidden" name="iddelete" value="<?php echo $vol['id'];?>">
+                                    <button class="btn btn btn-danger"><i class="fa fa-trash la la-trash"></i></button>
+                                    </form>
+      
                                     </td>
                                 </tr>
                             <?php endforeach;?>
