@@ -26,7 +26,7 @@ if (isset($_POST['find'])){
                 <a href="<?php echo BASE_URL;?>add" class="btn btn-sm btn-primary mr-2 mb-2">
                 <i class="fas fa-plus"></i>
                 </a>
-                <a href="<?php echo BASE_URL;?>" class="btn btn-sm btn-secondary mr-2 mb-2">
+                <a href="<?php echo BASE_URL;?>homeadmin" class="btn btn-sm btn-secondary mr-2 mb-2">
                 <i class="fas fa-home"></i>
                 </a>
                 <a href="<?php echo BASE_URL;?>logout" title= "Déconnexion" class="btn btn-sm btn-secondary bg-info mr-2 mb-2">
