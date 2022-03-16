@@ -120,7 +120,7 @@ public function addPassenger(){
         $result = Vol::addpass($data);
         if($result === 'ok'){
             Session::set('success', 'Passenger added');
-            Redirect::to('showvols');
+            Redirect::to('addpassenger');
         }else{
            echo $result;
         }

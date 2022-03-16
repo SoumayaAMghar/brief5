@@ -6,6 +6,7 @@ require_once './bootstrap.php';
 
 spl_autoload_register('autoload');
 
+
 function autoload($class_name){
     $array_paths = array(
         'database/',
@@ -17,7 +18,6 @@ function autoload($class_name){
 
     $parts = explode('\\',$class_name);
     $name = array_pop($parts);
-
     foreach($array_paths as $path){
         $file = sprintf($path.'%s.php',$name);
         if(is_file($file)){

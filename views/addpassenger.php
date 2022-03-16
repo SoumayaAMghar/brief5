@@ -21,18 +21,18 @@
                 <i class="fas fa-home"></i>
                 </a>
                 <a href="<?php echo BASE_URL;?>logout" title= "Déconnexion" class="btn btn-sm btn-secondary bg-info mr-2 mb-2 float-right mb-2 d-flex flex-row">
-                <i class="fas fa-user mr-2">  <?php echo $_SESSION['username'];?></i>
+                <i class="fa fa-power-off">  <?php echo $_SESSION['username'];?></i>
                 </a><hr>
                 
                             <div class="form-group">
-                                <label class="text-white" for="fname">Please enter your passenger's Full name</label>
+                                <label class="text-white" for="fname">Please enter your passenger's Full name and his/her birthday</label>
                                 <form method="post">
                                     <input type="text" hidden name="user_id">
                                     <input type="text" hidden  name="reservation_id">
                                     <!-- <label for="fullname">Fullname</label> -->
                                     <input type="text"  name="fullname" placeholder="fullname">
                                     <!-- <label for="birthday">Birthday</label> -->
-                                    <input type="datetime-local" name="birthday" >
+                                    <input type="date" name="birthday" >
                                     <button type="submit" class="btn btn-primary mt-3" name="addpass">Add passenger to flight</button>
                                 </form>
 

@@ -1,4 +1,3 @@
-
 <?php
 if (isset($_POST['find'])){
     $data = new VolsController();
@@ -33,7 +32,7 @@ if (isset($_POST['find'])){
                 <i class="fas fa-home"></i>
                 </a>
                 <a href="<?php echo BASE_URL;?>logout" title= "Déconnexion" class="btn btn-sm btn-secondary bg-info mr-2 mb-2">
-                <i class="fas fa-user mr-2">  <?php echo $_SESSION['username'];?></i>
+                <i class="fa fa-power-off">  <?php echo $_SESSION['username'];?></i>
                 </a>
                 <a href="<?php echo BASE_URL?>showvols" class="btn btn-warning btn-sm mb-2 mr-2 "> <!--url de base plus la page add -->
                 <i class="fas fa-business-time"></i>
@@ -61,7 +60,12 @@ if (isset($_POST['find'])){
                                     <th scope="row"><?php echo $vol['origin']; ?></th>
                                     <td><?php echo $vol['destination']; ?></td>
                                     <td><?php echo $vol['dep_time']; ?></td>
-                                    <td><?php echo $vol['return_time']; ?></td>
+                                    <td><?php 
+                                        if(!$vol['flighttype']){
+                                            echo $vol['return_time'];
+                                        }else echo "not found";
+                                 
+                                     ?></td>
                                     <td><?php echo $vol['seats']; ?></td>
                                     <td><?php echo $vol['flighttype'] 
                                         ?

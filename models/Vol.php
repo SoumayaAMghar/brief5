@@ -1,7 +1,10 @@
 <?php
 // error_reporting(0);
+
+
 class Vol{
-    static public function getAll(){
+
+    public static function getAll(){
         $stmt = DB::connect()->prepare('SELECT * FROM vols');
         $stmt->execute();
         return $stmt->fetchAll();
@@ -121,8 +124,8 @@ class Vol{
     }
     static public function reserve($data)
     {
-        $stmt = DB::connect()->prepare('SELECT * FROM vols WHERE id=:id');
-        // $stmt= DB::connect()->prepare('SELECT COUNT (*) FROM booking WHERE id=:id');  
+        $stmt = DB::connect()->prepare('SELECT * FROM vols WHERE id=:id'); 
+        // bindParam is an alternative way to pass data to the database
         $stmt = DB::connect()->prepare('INSERT INTO booking (id_user, id_vol, flight_type, origin, destination, dep_time) VALUES (:id_user,:id_vol,:flight_type,:origin,:destination,:dep_time)');
         $stmt->bindParam(':id_user', $data['id_user']);
         $stmt->bindParam(':id_vol', $data['id_vol']);

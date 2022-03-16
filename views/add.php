@@ -17,7 +17,7 @@ Redirect::to('homeuser');
             <div class="card">
                 <div class="card-header">Ajouter un vol</div>
                 <div class="card-body bg-light table-responsive">
-                <a href="<?php echo BASE_URL;?>" class="btn btn-sm btn-secondary mr-2 mb-2">
+                <a href="<?php echo BASE_URL;?>homeadmin" class="btn btn-sm btn-secondary mr-2 mb-2">
                 <i class="fas fa-home"></i>
                 </a>
                 <form method="post">

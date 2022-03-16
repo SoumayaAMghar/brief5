@@ -27,7 +27,7 @@ if($_SESSION['role'] == 0){
                 <i class="fas fa-home"></i>
                 </a>
                 <a href="<?php echo BASE_URL;?>logout" title= "Déconnexion" class="btn btn-sm btn-secondary bg-info mr-2 mb-2 float-right mb-2 d-flex flex-row">
-                <i class="fas fa-user mr-2">  <?php echo $_SESSION['username'];?></i>
+                <i class="fa fa-power-off">  <?php echo $_SESSION['username'];?></i>
                 </a>
                 <table class="table table-striped table-hover table-dark table-responsive">
                         <thead>
